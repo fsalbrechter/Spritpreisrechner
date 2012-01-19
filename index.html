@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Spritpreisrechner</title>
+				
+		<style type="text/css">
+		/* <![CDATA[ */
+			body, html{
+				height:100%;
+				font-size:0.8em;				
+				overflow: auto;
+			}
+			
+			div#output_area {
+				display:none;
+			}
+			
+			li#back_button_container {
+				float:right;
+			}
+						
+			/* ]]> */
+		</style>
+		
+		<!--embedding the jquery framework-->
+		<script type="text/javascript" src="./libs/jquery-1.4.3.min.js"></script>
+		<script type="text/javascript" src="./libs/jquery-ui-1.8.16.custom.min.js"></script>
+		
+		<!--defining some helpful functions (before loading js files, debug is used there)-->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			//debug function
+			function debug(msg){
+				if(typeof console != 'undefined' && typeof console.log != 'undefined') {
+					console.log(msg);
+				}
+			}
+			
+			
+			//is called after the DOM tree is fully loaded
+			function onLoad(){
+				var lang = widget.preferenceForKey('lang');
+				MVC.Controller.init(lang);
+			}
+			/* ]]> */
+		</script>
+		
+		<!--embedding code for the MVC pattern-->
+		<!-- Commented out uncompressed files -->
+    	<script type="text/javascript" src="./js/mvc.js"></script>
+		<script type="text/javascript" src="./js/model.js"></script>
+		<script type="text/javascript" src="./js/view.js"></script>
+		<script type="text/javascript" src="./js/controller.js"></script>
+		
+		<!--  <script type="text/javascript" src="./js/mvc.min.js"></script>-->
+		
+		<!-- Library to autocomplete the place -->
+		
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+		
+		<!-- Commented out uncompressed file -->
+		<link rel="stylesheet" href="./css/jquery-ui-1.8.16.custom.css">
+		<!--<link type="text/css" href="./css/init.min.css" rel="stylesheet"/> -->
+		
+	</head>
+	<body>
+		<div class="ui-widget ui-state-error ui-corner-all" id="notification"></div>
+	
+		<div id="location_dialog">
+			<h3><span lang="en">You are being located.</span></h3>
+			<img src="./images/ajax-loader.gif" alt="Loading indicator"/>
+		</div>
+		
+		<div id="data_load_dialog">
+			<h3><span lang="en">Data is loaded...</span></h3>
+			<img src="./images/ajax-loader.gif" alt="Loading indicator"/>
+		</div>
+	
+		<div id="input_area" style="width:95%; height:90%">
+			
+			<ul>
+				<li><a href="#online_area"><span lang="en">Online Mode</span></a></li>
+				<li id="offline_mode_button"><a href="#offline_area"><span lang="en">Offline Mode</span></a></li>							
+			</ul>
+	
+			<div id="online_area">
+				<h3><span lang="en">Input new query</span></h3>
+				<p>
+					<label for="address">
+						<span lang="en">Address</span>: 
+					</label>
+					<input type="text" id="address" name="address"/>
+					
+					<button id="button_locate_user">
+						<span lang="en">locate me</span>
+					</button>
+				</p>
+				<p>
+					<label for="show_closed">
+						<span lang="en">Show closed gasstations</span>: 
+					</label>
+					<input type="checkbox" id="show_closed" name="show_closed"/>
+				</p>
+				<p>
+					<label for="gas_type">
+						<span lang="en">Gastype</span>: 
+					</label>
+					<select id="gas_type" size="1">
+				      <option value="DIE">Diesel</option>
+				      <option value="SUP">Super 95</option>			      
+				    </select>		    
+				</p>
+				<p>
+					<label for="cache_request">
+						<span lang="en">cache request</span>: 
+					</label>
+					<input type="checkbox" id="cache_request" name="cache_request" checked/>
+					<button id="button_find_gasstations">
+						<span lang="en">find gasstations</span>
+					</button>
+				</p>
+			</div>
+	
+			<div id="offline_area">
+				<h3><span lang="en">Select cached address</span></h3>
+				<select id ="offline_addresses" name="offline_addresses">
+				    
+			    </select>
+				
+			</div>	
+		</div>
+		
+		
+		
+		<div id="output_area" >
+			<ul id="output_header">
+				<li><a href="#map"><span lang="en">Map</span></a></li>
+				<li><a href="#list"><span lang="en">List</span></a></li>	
+				<li id="back_button_container"><button id="button_back" >back</button></li>
+			</ul>
+			
+			<div id="map">
+				<div id="map_canvas" style="width:100%;height:40%"></div>		
+				<div id="offline_image"></div>
+				
+			</div>
+			
+			<div id="list" >
+				<table id="gasstation_list">			
+				</table>	
+			</div>
+		</div>			
+	</body>
+</html>
