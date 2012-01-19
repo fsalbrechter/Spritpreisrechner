@@ -2,6 +2,7 @@
 	$response = "";
 		
 	define (URL, "url");
+	define (PURL, "purl");
 	
 	if ($_GET[URL])
 	{
@@ -23,6 +24,23 @@
 		header("Content-Length: " . strlen($response));
 		
 		echo $response;
+	} else if ($_POST[PURL]) {
+	  
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "http://www.caffeinated.at/MMIS/imgb64.php");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, true);
+
+
+    $data = array(
+        'image_url' => $_POST[PURL],
+    );
+
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $output = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    curl_close($ch);
+	  echo $output;
 	}
 		
 ?>

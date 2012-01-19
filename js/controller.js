@@ -135,12 +135,12 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 				if (Model.cacheRequest(View.getCurrentAddress(), JSON.stringify(gasstationListJson)))
 				{
 					var image_url = _createOfflineMapUrl(gasstationListJson);
-					
-//					Request.getBase64EncodedImage(function(decodedImage)
-//					{
-//						if (!Model.cacheRequest(View.getCurrentAddress() + "_image", decodedImage))
-//							View.notify("Your browser does not support webstorage");
-//					}, image_url);
+				
+					Request.getImage(function(decodedImage)
+					{
+						if (!Model.cacheRequest(View.getCurrentAddress() + "_image", decodedImage))
+							View.notify("Your browser does not support webstorage");
+					}, image_url);
 				}
 			}
 			
@@ -248,7 +248,7 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 		
 		var markers = "";
 		
-		var base_url = "./images/fillingstation_"
+		var base_url = "http://www.caffeinated.at/MMIS/fillingstation_"
 		
 		var markers_icon = {
 				0 : base_url + "green.png", 

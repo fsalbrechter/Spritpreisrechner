@@ -29,11 +29,12 @@ MVC.Helper.ServerAPI = (function () {
 			
 			debug(escape(url));
 			
+			
 			var param = {
-					"url" : escape(url)				
+					"purl" :url				
 			};
 			
-			_getRequest(param, callback);
+			_getPRequest(param, callback);
 		},
 		
 			
@@ -111,6 +112,24 @@ MVC.Helper.ServerAPI = (function () {
 			url = _SERVICE_URL;
 		
 		widget.httpGet(
+			url, 
+			parameter, 
+			function(data) {
+				debug("Helper.ServerAPI _getRequest: the response has just arrived!");								
+				callback(data);
+			},
+			function(xhr, textStatus, e) {
+				debug('Request failed: ' + e);
+				MVC.View.notify('An unexpected error occurred: '+e);
+			}
+		);
+	};
+	
+	_getPRequest = function(parameter, callback, url){
+		if(typeof url == 'undefined')
+			url = _SERVICE_URL;
+		
+		widget.httpPost(
 			url, 
 			parameter, 
 			function(data) {
