@@ -11,6 +11,8 @@ MVC.View = (function (interFace, Controller, $) {
 
 	/* public methods */
 
+	var window_width = $(this).width();
+	var window_height = $(this).height();
     interFace.notify = function(message) {
 		debug("View notify(): writing notification message for the user: "+message);
 		$("div#notification").html(message).slideDown(500, function() {
@@ -53,6 +55,20 @@ MVC.View = (function (interFace, Controller, $) {
 			
 			
 		});	
+		
+		$(window).resize(function() {
+			//alert($("#map_canvas"));
+			window_width = $(this).width()-25;
+			window_height = $(this).height()-25;
+			$("#map_canvas").width(window_width);
+			$("#map_canvas").height(window_height);
+			$("#map_canvas").hide();
+			$("#map_canvas").show();
+			
+			
+			
+			//alert(width);
+		});
 	};
     
     interFace.showLocationDialog = function()
@@ -142,8 +158,8 @@ MVC.View = (function (interFace, Controller, $) {
 	{
 		debug('View showOfflineMap(): ');
 		
-		$("#map_canvas").width(350);
-		$("#map_canvas").height(240);
+		$("#map_canvas").width(window_width);//350
+		$("#map_canvas").height(window_height);//240
 		$("#offline_image").hide();
 		$("#map_canvas").show();		
 	};
@@ -227,6 +243,27 @@ MVC.View = (function (interFace, Controller, $) {
 	},
 	
 	_setClickEvents = function() {
+	
+	
+	 
+	 $("#widgetTitleContainer_Spritpreisrechner ui-icon ui-icon-extlink").click(function() { 
+		
+		alert("Bla");
+		$("#map_canvas").width(750);
+			$("#map_canvas").height(440);
+			//$("#offline_image").hide();
+			$("#map_canvas").show();
+		
+	});
+	
+		$(".widgetTitleContainer_Spritpreisrechner ").click(function() {			
+			debug('View showOfflineMap(): ');
+		
+			$("#map_canvas").width(750);
+			$("#map_canvas").height(440);
+			//$("#offline_image").hide();
+			$("#map_canvas").show();	
+		});
 		
 		debug('View _setClickEvents(): set click event for button#button_locate_user');
         $("button#button_locate_user").click(function() {
