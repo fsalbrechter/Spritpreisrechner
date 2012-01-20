@@ -58,10 +58,10 @@ MVC.View = (function (interFace, Controller, $) {
 		
 		$(window).resize(function() {
 			//alert($("#map_canvas"));
-			window_width = $(this).width()-25;
-			window_height = $(this).height()-25;
-			$("#map_canvas").width(window_width);
-			$("#map_canvas").height(window_height);
+			window_width = $(this).width();
+			window_height = $(this).height();
+			$("#map_canvas").width(window_width-50);
+			$("#map_canvas").height(window_height-50);
 			$("#map_canvas").hide();
 			$("#map_canvas").show();
 			
@@ -158,8 +158,8 @@ MVC.View = (function (interFace, Controller, $) {
 	{
 		debug('View showOfflineMap(): ');
 		
-		$("#map_canvas").width(window_width);//350
-		$("#map_canvas").height(window_height);//240
+		$("#map_canvas").width(window_width-50);//350
+		$("#map_canvas").height(window_height-50);//240
 		$("#offline_image").hide();
 		$("#map_canvas").show();		
 	};
