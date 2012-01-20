@@ -144,9 +144,11 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 				}
 			}
 			
+			View.toggleAreas();
+			
 			_setupOnlineMap(gasstationListJson);
 			
-			View.toggleAreas();
+		
 			View.closeLoadDialog();
 
 			}, 	View.getShowOnlyOpenGasstations() ? "checked" : "", View
@@ -255,8 +257,8 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 				1 : base_url + "light_green.png",
 				2 : base_url + "yellow.png",
 				3 : base_url + "orange.png",
-				4 : base_url + "red.png",
-		}
+				4 : base_url + "red.png"
+		};
 		
 		
 		for (i = 0; i < gasstationListJson.length; i++) {

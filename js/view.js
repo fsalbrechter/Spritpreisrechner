@@ -62,8 +62,16 @@ MVC.View = (function (interFace, Controller, $) {
 			window_height = $(this).height();
 			$("#map_canvas").width(window_width-50);
 			$("#map_canvas").height(window_height-60);
-			$("#map_canvas").hide();
-			$("#map_canvas").show();
+			
+			
+			//$("#map_canvas").hide();
+			//$("#map_canvas").show();
+			
+			$("#b64img").width(window_width-50);
+			$("#b64img").height(window_height-60);
+			
+			
+			
 			
 			
 			
@@ -141,8 +149,8 @@ MVC.View = (function (interFace, Controller, $) {
 	interFace.showOfflineMap = function(base64_data)
 	{
 		debug('View showOfflineMap(): writing base64 encoded image to tag' );
-		
-		$("#offline_image").html("<img src='data:image/png;base64," + base64_data + "'/>");
+	
+		$("#offline_image").html("<img id='b64img' src='data:image/png;base64," + base64_data + "' width='" + (window_width-50) + "' height='" + (window_height-60) + "'/>");
 		$("#offline_image").show();
 		$("#map_canvas").hide();
 	};
