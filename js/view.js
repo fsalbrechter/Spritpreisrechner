@@ -60,8 +60,8 @@ MVC.View = (function (interFace, Controller, $) {
 			//alert($("#map_canvas"));
 			window_width = $(this).width();
 			window_height = $(this).height();
-			$("#map_canvas").width(window_width-40);
-			$("#map_canvas").height(window_height-50);
+			$("#map_canvas").width(window_width-50);
+			$("#map_canvas").height(window_height-60);
 			$("#map_canvas").hide();
 			$("#map_canvas").show();
 			
@@ -158,8 +158,8 @@ MVC.View = (function (interFace, Controller, $) {
 	{
 		debug('View showOfflineMap(): ');
 		
-		$("#map_canvas").width(window_width-40);//350
-		$("#map_canvas").height(window_height-50);//240
+		$("#map_canvas").width(window_width-50);//350
+		$("#map_canvas").height(window_height-60);//240
 		$("#offline_image").hide();
 		$("#map_canvas").show();		
 	};
@@ -248,7 +248,7 @@ MVC.View = (function (interFace, Controller, $) {
 	 
 	 $("#widgetTitleContainer_Spritpreisrechner ui-icon ui-icon-extlink").click(function() { 
 		
-		alert("Bla");
+		
 		$("#map_canvas").width(750);
 			$("#map_canvas").height(440);
 			//$("#offline_image").hide();
