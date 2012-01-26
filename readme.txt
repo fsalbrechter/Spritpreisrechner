@@ -8,4 +8,6 @@ Folgende Punkte bitte beachten:
    Obwohl wir alle vorgeschlagenen Workarounds (left-off, check resize, usw.) eingebaut haben.
    Falls du doch rausfindest wie sich das Problem beheben lässt sag uns bitte Bescheid, wir wären
    sehr interessiert wie man das richtig löst.
-   
+
+ - imgb64.php wird nicht lokal benötigt sondern ist die Datei die auf http://www.caffeinated.at liegt und die das 
+   Bild holt und base64 codiert und wurde nur zur Referenz hinzugefügt.

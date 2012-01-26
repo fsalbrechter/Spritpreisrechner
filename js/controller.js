@@ -42,8 +42,8 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 						autocomplete,
 						'place_changed',
 						function() {
-							_updateLongitude(autocomplete.getPlace().geometry.location.Qa);
-							_updateLatitude(autocomplete.getPlace().geometry.location.Pa);
+							_updateLongitude(autocomplete.getPlace().geometry.location.lng());
+							_updateLatitude(autocomplete.getPlace().geometry.location.lat());
 						});
 
 	};
@@ -65,6 +65,8 @@ MVC.Controller = (function(interFace, Model, View, Request) {
 						debug("Controller updatePositionGeolocation: ERROR "
 								+ message);
 						View.notify("navigator.geolocation " + message);
+						
+						View.closeLocationDialog();
 					});
 		} else {
 			debug("Controller updatePositionGeolocation: ERROR navigator.geolocation not supported");
